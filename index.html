@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" manifest="offline.manifest">
+<html lang="en" manifest="offline.manifest">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -165,50 +165,43 @@
   </div>
   <script type="text/javascript">
     // @ts-check
-    try {
-      var scoreCounterButtons = document.getElementsByClassName("score-button")
-      /** @type HTMLInputElement[] */
-      var scoreCounterButtonsArray = []
+    var scoreCounterButtons = document.getElementsByClassName("score-button")
+    /** @type HTMLInputElement[] */
+    var scoreCounterButtonsArray = []
 
-      alert(scoreCounterButtons.length)
+    for(var i = 0; scoreCounterButtons.length != i; i++) {
+      var button = scoreCounterButtons.item(i)
 
-      for(var i = 0; scoreCounterButtons.length != i; i++) {
-        var button = scoreCounterButtons.item(i)
-
-        if (button && button instanceof HTMLInputElement) {
-          scoreCounterButtonsArray.push(button)
-          button.addEventListener("click", incrementValue)
-        }
+      if (button && button instanceof HTMLInputElement) {
+        scoreCounterButtonsArray.push(button)
+        button.addEventListener("click", incrementValue)
       }
+    }
 
-      var playerNameInputs = document.getElementsByClassName("player-name")
+    var playerNameInputs = document.getElementsByClassName("player-name")
 
-      for(var n = 0; playerNameInputs.length != n; n++) {
-        var input = playerNameInputs.item(n)
+    for(var n = 0; playerNameInputs.length != n; n++) {
+      var input = playerNameInputs.item(n)
 
-        if (input) {
-          input.addEventListener("focus", focusToLast)
-        }
+      if (input) {
+        input.addEventListener("focus", focusToLast)
       }
+    }
 
-      var resetButtons = document.getElementsByClassName("score-reset-button")
+    var resetButtons = document.getElementsByClassName("score-reset-button")
 
-      if (resetButtons.length > 0) {
-        var resetButton = resetButtons.item(0)
+    if (resetButtons.length > 0) {
+      var resetButton = resetButtons.item(0)
 
-        if (resetButton instanceof HTMLInputElement) {
-          resetButton.addEventListener("click", resetScore)
-        }
+      if (resetButton instanceof HTMLInputElement) {
+        resetButton.addEventListener("click", resetScore)
       }
-  } catch(e) {
-    alert(e.message)
-  }
+    }
 
     /**
      * @param {MouseEvent} e
      */
     function incrementValue(e) {
-      alert("tapped")
       var element = e.currentTarget
 
       if (element && element instanceof HTMLInputElement) {
