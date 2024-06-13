@@ -227,20 +227,30 @@
       }
     }
 
-    // function resetScore() {
-    //   try {
-    //     var matchScores = [ scoreCounterButtonsArray[1], scoreCounterButtonsArray[2] ]
-    //     var playerScores = [ scoreCounterButtonsArray[0], scoreCounterButtonsArray[3] ]
+    function resetScore() {
+      var matchScores = [ scoreCounterButtonsArray[1], scoreCounterButtonsArray[2] ]
+      var playerScores = [ scoreCounterButtonsArray[0], scoreCounterButtonsArray[3] ]
 
-    //     if (matchScores.some(score => Number(score.value) > 0)) {
-    //       matchScores.forEach(score => score.value = "0")
-    //     } else if(playerScores.some(score => Number(score.value) > 0)) {
-    //       playerScores.forEach(score => score.value = "0")
-    //     }
-    //   } catch(e) {
-    //     alert(e.message)
-    //   }
-    // }
+      if (matchScores.some(filterByScore)) {
+        matchScores.forEach(setValueZero)
+      } else if(playerScores.some(filterByScore)) {
+        playerScores.forEach(setValueZero)
+      }
+    }
+
+    /**
+     * @param {HTMLInputElement} input
+     */
+    function filterByScore(input) {
+      return Number(input.value) > 0
+    }
+
+    /**
+     * @param {HTMLInputElement} input
+     */
+    function setValueZero(input) {
+      input.value = "0"
+    }
   </script>
 </body>
 </html>
