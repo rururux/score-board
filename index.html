@@ -181,15 +181,15 @@
         }
       }
 
-      // var playerNameInputs = document.getElementsByClassName("player-name")
+      var playerNameInputs = document.getElementsByClassName("player-name")
 
-      // for(var n = 0; playerNameInputs.length != n; n++) {
-      //   var input = playerNameInputs.item(n)
+      for(var n = 0; playerNameInputs.length != n; n++) {
+        var input = playerNameInputs.item(n)
 
-      //   if (input) {
-      //     input.addEventListener("focus", focusToLast)
-      //   }
-      // }
+        if (input) {
+          input.addEventListener("focus", focusToLast)
+        }
+      }
 
       // var resetButton = document.getElementsByClassName("score-reset-button").item(0)
 
@@ -215,13 +215,13 @@
     /**
      * @param {FocusEvent} e
      */
-    // function focusToLast(e) {
-    //   var element = e.currentTarget
+    function focusToLast(e) {
+      var element = e.currentTarget
 
-    //   if (element && element instanceof HTMLInputElement) {
-    //     element.select()
-    //   }
-    // }
+      if (element && element instanceof HTMLInputElement) {
+        element.select()
+      }
+    }
 
     // function resetScore() {
     //   var matchScores = [ scoreCounterButtonsArray[1], scoreCounterButtonsArray[2] ]
