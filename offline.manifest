@@ -3,6 +3,7 @@ CACHE MANIFEST
 # Version 1.31
 
 CACHE:
-appicon.jpg
+appicon.png
+apple-touch-icon.png
 images/sea.jpg
 fonts/OpenSans-Light.ttf
