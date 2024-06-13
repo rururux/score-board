@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja" manifest="offline.manifest">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline Score Board</title>
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background-image: url(/images/sea.jpg);
+      background-size: cover;
+
+      color: white;
+      font-weight: lighter;
+    }
+
+    input {
+      color: inherit;
+      background-color: transparent;
+      border: none;
+      font: inherit;
+      appearance: none;
+    }
+
+    .container {
+      height: 100%;
+      padding-left: 2.5%;
+      padding-right: 2.5%;
+    }
+
+    .box {
+      float: left;
+      vertical-align: top;
+      border-radius: 8px;
+    }
+
+    .box + .box {
+      margin-left: 1%;
+    }
+
+    .box.match-score {
+      width: 39%;
+      height: 80%;
+      padding: 8px;
+      position: relative;
+      top: 10%;
+    }
+
+    .match-score + .match-score {
+      margin-left: 2%;
+    }
+
+    .box.player-score {
+      width: 9%;
+      height: 100%;
+      position: relative;
+    }
+
+    .score-counter {
+      position: relative;
+      top: 10%;
+    }
+
+    .score-counter:before, .match-score:before, .score-reset:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgb(255, 255, 255);
+      opacity: 0.3;
+      border-radius: inherit;
+
+      pointer-events: none;
+    }
+
+    .player-score-counter {
+      height: 20%;
+    }
+
+    .score-button {
+      /* reset buttons default style */
+      line-height: initial;
+      padding: 0;
+      /*  */
+
+      width: 100%;
+      border: 1px white solid;
+      border-radius: 8px;
+    }
+
+    .score-button.match-score-button {
+      height: 80%;
+      font-size: 18em;
+    }
+
+    .score-button.player-score-button {
+      height: 100%;
+      font-size: 3em;
+    }
+
+    .player-name {
+      width: 100%;
+      height: 20%;
+      text-align: center;
+      font-size: 4em;
+    }
+
+    .score-reset {
+      width: 100%;
+      position: absolute;
+      bottom: 10%;
+      padding-top: 100%;
+
+      border-radius: 50%;
+    }
+
+    .score-reset-button {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      font-size: 1.2em;
+      border: 1px white solid;
+      border-radius: 50%;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box player-score">
+      <div class="score-counter player-score-counter">
+        <input class="score-button player-score-button" type="button" value="0">
+      </div>
+    </div>
+    <div class="box match-score">
+      <input class="score-button match-score-button" type="button" value="0">
+      <input class="player-name" type="text" value="Player A">
+    </div>
+    <div class="box match-score">
+      <input class="score-button match-score-button" type="button" value="0">
+      <input class="player-name" type="text" value="Player B">
+    </div>
+    <div class="box player-score">
+      <div class="score-counter player-score-counter">
+        <input class="score-button player-score-button" type="button" value="0">
+      </div>
+      <div class="score-reset">
+        <input class="score-reset-button" type="button" value="Reset">
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    // @ts-check
+    var scoreCounterButtons = document.getElementsByClassName("score-button")
+    /** @type HTMLInputElement[] */
+    var scoreCounterButtonsArray = []
+
+    for(var i = 0; scoreCounterButtons.length != i; i++) {
+      var button = scoreCounterButtons.item(i)
+
+      if (button && button instanceof HTMLInputElement) {
+        scoreCounterButtonsArray.push(button)
+        button.addEventListener("click", incrementValue)
+      }
+    }
+
+    var playerNameInputs = document.getElementsByClassName("player-name")
+
+    for(var n = 0; playerNameInputs.length != n; n++) {
+      var input = playerNameInputs.item(n)
+
+      if (input) {
+        input.addEventListener("focus", focusToLast)
+      }
+    }
+
+    var resetButton = document.getElementsByClassName("score-reset-button").item(0)
+
+    if (resetButton instanceof HTMLInputElement) {
+      resetButton.addEventListener("click", resetScore)
+    }
+
+
+    /**
+     * @param {MouseEvent} e
+     */
+    function incrementValue(e) {
+      var element = e.currentTarget
+
+      if (element && element instanceof HTMLInputElement) {
+        element.value = String(Number(element.value) + 1)
+      }
+    }
+
+    /**
+     * @param {FocusEvent} e
+     */
+    function focusToLast(e) {
+      var element = e.currentTarget
+
+      if (element && element instanceof HTMLInputElement) {
+        element.select()
+      }
+    }
+
+    function resetScore() {
+      var matchScores = [ scoreCounterButtonsArray[1], scoreCounterButtonsArray[2] ]
+      var playerScores = [ scoreCounterButtonsArray[0], scoreCounterButtonsArray[3] ]
+
+      if (matchScores.some(score => Number(score.value) > 0)) {
+        matchScores.forEach(score => score.value = "0")
+      } else if(playerScores.some(score => Number(score.value) > 0)) {
+        playerScores.forEach(score => score.value = "0")
+      }
+    }
+  </script>
+</body>
+</html>
