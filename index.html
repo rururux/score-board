@@ -197,7 +197,7 @@
         var resetButton = resetButtons.item(0)
 
         if (resetButton instanceof HTMLInputElement) {
-          resetButton.addEventListener("click", resetScore)
+          // resetButton.addEventListener("click", resetScore)
         }
       }
   } catch(e) {
@@ -227,20 +227,20 @@
       }
     }
 
-    function resetScore() {
-      try {
-        var matchScores = [ scoreCounterButtonsArray[1], scoreCounterButtonsArray[2] ]
-        var playerScores = [ scoreCounterButtonsArray[0], scoreCounterButtonsArray[3] ]
+    // function resetScore() {
+    //   try {
+    //     var matchScores = [ scoreCounterButtonsArray[1], scoreCounterButtonsArray[2] ]
+    //     var playerScores = [ scoreCounterButtonsArray[0], scoreCounterButtonsArray[3] ]
 
-        if (matchScores.some(score => Number(score.value) > 0)) {
-          matchScores.forEach(score => score.value = "0")
-        } else if(playerScores.some(score => Number(score.value) > 0)) {
-          playerScores.forEach(score => score.value = "0")
-        }
-      } catch(e) {
-        alert(e.message)
-      }
-    }
+    //     if (matchScores.some(score => Number(score.value) > 0)) {
+    //       matchScores.forEach(score => score.value = "0")
+    //     } else if(playerScores.some(score => Number(score.value) > 0)) {
+    //       playerScores.forEach(score => score.value = "0")
+    //     }
+    //   } catch(e) {
+    //     alert(e.message)
+    //   }
+    // }
   </script>
 </body>
 </html>
