@@ -164,7 +164,73 @@
     </div>
   </div>
   <script type="text/javascript">
-    alert("hello?")
+    // @ts-check
+    try {
+      var scoreCounterButtons = document.getElementsByClassName("score-button")
+      /** @type HTMLInputElement[] */
+      var scoreCounterButtonsArray = []
+
+      for(var i = 0; scoreCounterButtons.length != i; i++) {
+        var button = scoreCounterButtons.item(i)
+
+        if (button && button instanceof HTMLInputElement) {
+          scoreCounterButtonsArray.push(button)
+          button.addEventListener("click", incrementValue)
+        }
+      }
+
+      var playerNameInputs = document.getElementsByClassName("player-name")
+
+      for(var n = 0; playerNameInputs.length != n; n++) {
+        var input = playerNameInputs.item(n)
+
+        if (input) {
+          input.addEventListener("focus", focusToLast)
+        }
+      }
+
+      var resetButton = document.getElementsByClassName("score-reset-button").item(0)
+
+      if (resetButton instanceof HTMLInputElement) {
+        resetButton.addEventListener("click", resetScore)
+      }
+  } catch(e) {
+    alert(e.message)
+  }
+
+    /**
+     * @param {MouseEvent} e
+     */
+    function incrementValue(e) {
+      alert("tapped")
+      var element = e.currentTarget
+
+      if (element && element instanceof HTMLInputElement) {
+        element.value = String(Number(element.value) + 1)
+      }
+    }
+
+    /**
+     * @param {FocusEvent} e
+     */
+    function focusToLast(e) {
+      var element = e.currentTarget
+
+      if (element && element instanceof HTMLInputElement) {
+        element.select()
+      }
+    }
+
+    function resetScore() {
+      var matchScores = [ scoreCounterButtonsArray[1], scoreCounterButtonsArray[2] ]
+      var playerScores = [ scoreCounterButtonsArray[0], scoreCounterButtonsArray[3] ]
+
+      if (matchScores.some(score => Number(score.value) > 0)) {
+        matchScores.forEach(score => score.value = "0")
+      } else if(playerScores.some(score => Number(score.value) > 0)) {
+        playerScores.forEach(score => score.value = "0")
+      }
+    }
   </script>
 </body>
 </html>
