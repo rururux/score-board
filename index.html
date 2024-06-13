@@ -199,9 +199,13 @@
      * @param {MouseEvent} e
      */
     function incrementValue(e) {
+      alert("tapped")
       var element = e.currentTarget
 
+      element && alert("element found")
+
       if (element && element instanceof HTMLInputElement) {
+        alert("but element is not instanceof?")
         element.value = String(Number(element.value) + 1)
       }
     }
