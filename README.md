@@ -1,8 +1,10 @@
 ## Offline Score Board
-父が持っていた [**初代 iPad**](https://ja.wikipedia.org/wiki/IPad_(%E7%AC%AC1%E4%B8%96%E4%BB%A3)) でオフライン動作するように開発した Web アプリ。
-父に「この iPad になんとかしてスコアボードアプリを入れられないか」と頼まれたのがきっかけ。
-Safari 5 で動作するように開発。
-CSS grid はもちろん flex すら使えない環境向けに開発するのは自分にとっては新鮮だった。
+父が持っていた [**初代 iPad**](https://ja.wikipedia.org/wiki/IPad_(%E7%AC%AC1%E4%B8%96%E4%BB%A3)) でオフライン動作するように開発した Web アプリ。  
+父に「この iPad になんとかしてスコアボードアプリを入れられないか」と頼まれたのがきっかけ。  
+Safari 5 で動作するように開発。  
+CSS grid はもちろん flex すら使えない環境向けに開発するのは自分にとっては新鮮だった。  
+
+詳細: [初代 iPad 用の Web アプリを作った(スコアボードアプリ)](https://zenn.dev/kei874/articles/23ca6e9f1e4dce)
 
 ### 特徴
 - モダンな技術がほぼ使えない環境向けに開発。
